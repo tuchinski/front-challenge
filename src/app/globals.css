@@ -7,4 +7,17 @@
 
   --color-badge-blue:#0096FF;
   --color-badge-green: #22C55E;
+
+  --color-megasena-bg: #EEFDF2;
+  --color-megasena-border-bg: #B3F6CA;
+  --color-megasena-ball-bg: #169941;
+
+  --color-powerball-bg: #D2ECFF;
+  --color-powerball-border-bg: #73D0FF;
+  --color-powerball-ball-bg: #0096FF;
+  
+  --color-superEnalotto-bg: #FFCCC7;
+  --color-superEnalotto-border-bg: #FF7161;
+  --color-superEnalotto-ball-bg: #EE230D;
+  
 }
