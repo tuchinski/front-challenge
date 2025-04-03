@@ -13,8 +13,8 @@ export default function CustomButtom({ buttonName, style, onClick, disabled, cla
     
 
     const colorVariants = {
-        primary: 'bg-button-primary',
-        secondary: 'bg-button-secondary'
+        primary: 'bg-button-primary text-white',
+        secondary: 'bg-button-secondary text-neutral-800'
     }
 
     console.log(style);
@@ -22,7 +22,7 @@ export default function CustomButtom({ buttonName, style, onClick, disabled, cla
         <>
             <button 
                 type="button"
-                className={`${colorVariants[style]} text-white rounded-4xl p-2  
+                className={`${colorVariants[style]} text-xs rounded-4xl p-2  
                             hover:opacity-80 transition disabled:opacity-50 ${className}`}
                 onClick={onClick}
                 disabled={disabled}

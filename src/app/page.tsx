@@ -4,6 +4,7 @@ import CustomButtom from "@/components/CustomButtom";
 import DrawDetails from "@/components/DrawDetails";
 import TicketCard from "@/components/TicketCard";
 import TicketInfo from "./interfaces/TicketInfo";
+import NumberSelection from "@/components/NumberSelection";
 
 const teste = () => {
   console.log("Button Clicked");
@@ -21,6 +22,9 @@ export default function Home() {
   return (
     <>
       <h1 className="">Start Page</h1>
+      <div className="m-4">
+        <NumberSelection qtdNumbersTicket={6} maxNumTicket={60} typeDraw="megaSena"/>
+      </div>
       <div className="m-4">
         <CustomButtom buttonName="Teste" style="primary" onClick={teste} disabled={true}/>
       </div>

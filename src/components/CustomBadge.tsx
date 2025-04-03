@@ -16,7 +16,7 @@ export default function CustomBadge({ badgeText, type }: CustomBadgeProps) {
     
     return(
         <>
-            <button className={`h-auto mx-2.5 rounded-4xl ${colorVariants[type]}
+            <button className={`h-auto w-max mx-2.5 rounded-4xl ${colorVariants[type]}
                 px-2 text-sm font-normal`}>
                 {badgeText}
             </button>

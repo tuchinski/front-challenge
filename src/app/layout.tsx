@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.className}>
-      <body>
+    <html lang="en" className={geistSans.className} >
+      <body className="bg-stone-600">
           <Header />
           {children}
       </body>
