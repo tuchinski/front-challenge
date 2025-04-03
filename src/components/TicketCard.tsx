@@ -1,8 +1,11 @@
+import TicketInfo from "@/app/interfaces/TicketInfo";
+
 interface TicketCardProps {
     type: 'megaSena' | 'powerball' | 'superEnalotto';
+    ticketInfo: TicketInfo;
 }
 
-export default function TicketCard({type}: TicketCardProps){
+export default function TicketCard({type, ticketInfo}: TicketCardProps){
     const styles = {
         megaSena:{
             ball:'bg-megasena-ball-bg',
@@ -30,17 +33,16 @@ export default function TicketCard({type}: TicketCardProps){
             <div id="card" className={`${styles[type]['cardBg']} ${styles[type].borderCard} 
             w-[260] h-[122] rounded-lg px-2 py-3 grid-cols-1 space-y-2 border-1 `} >
                 <div className="flex justify-between text-neutral-600" >
-                    <h1 className="text-sm">Ticket #01</h1>
+                    <h1 className="text-sm">{`Ticket #${ticketInfo.ticketNumber}`}</h1>
                     <h2 className="text-xs">{styles[type].titleName}</h2>
                 </div>
 
                 <div className="flex justify-between">
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>1</h1>
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>2</h1>
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>3</h1>
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>4</h1>
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>5</h1>
-                    <h1 className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>6</h1>
+                    {
+                        ticketInfo.numbersSelected.map((number) => {
+                            return <h1 key={number} className={`${styles[type]['ball']} ${styles['commonBallStyle']}`}>{number}</h1>        
+                        })
+                    }
                 </div>
                 <div>
                     <h1 className={`border-1 border-dashed ${styles[type].borderCard}`}></h1>
