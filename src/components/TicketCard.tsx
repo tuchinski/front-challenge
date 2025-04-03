@@ -25,7 +25,7 @@ export default function TicketCard({type, ticketInfo}: TicketCardProps){
             cardBg: "bg-superEnalotto-bg",
             borderCard: "border-superEnalotto-border-bg"
         },
-        commonBallStyle: 'w-8 h-8 rounded-2xl px-3 py-1 text-white'
+        commonBallStyle: 'w-8 h-8 rounded-2xl px-3 py-1 text-white flex items-center justify-center'
     }
 
     return (
