@@ -4,8 +4,8 @@ import CustomButtom from "./CustomButtom";
 export default function CardDraw(){
     return(
         <>
-            <div className="w-72 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
-               <div className="w-64 bg-white rounded-4xl flex flex-col gap-6">
+            <div className="sm:w-72 w-96 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
+               <div className="w-full bg-white rounded-3xl flex flex-col gap-6">
                    <div className="flex items-center center">
                         <img className="size-16 flex justify-center items-center" src="https://assets.lottobillions.com/public/logos/MegaSena-2.webp" alt="alt" />
                         <ul>

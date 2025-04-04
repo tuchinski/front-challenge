@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={geistSans.className} >
-      <body className="bg-stone-600">
+      <body>
           <Header />
           {children}
       </body>
