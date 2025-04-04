@@ -31,7 +31,7 @@ export default function TicketCard({type, ticketInfo}: TicketCardProps){
     return (
         <>
             <div id="card" className={`${styles[type]['cardBg']} ${styles[type].borderCard} 
-            w-[260] h-[122] rounded-lg px-2 py-3 grid-cols-1 space-y-2 border-1 `} >
+            w-min-[260] h-min-[122] rounded-lg px-2 py-3 grid-cols-1 space-y-2 border-1 `} >
                 <div className="flex justify-between text-neutral-600" >
                     <h1 className="text-sm">{`Ticket #${ticketInfo.ticketNumber}`}</h1>
                     <h2 className="text-xs">{styles[type].titleName}</h2>
