@@ -5,7 +5,7 @@ export default function Header(){
     return(
         <div className="flex justify-center mt-6 sm:mt-12">
             <div className="flex justify-between items-center border-1
-            rounded-[129px] px-6 py-2 border-neutral-100 w-[370] sm:w-2xl">
+            rounded-[129px] px-6 py-2 border-border-header w-[370] sm:w-2xl  bg-white">
                 <div className="flex space-x-[16px] items-center">
                     <div className="bg-bg-icon1-header w-12 h-12 rounded-3xl flex
                     items-center justify-center">

@@ -27,7 +27,7 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket} : Numbe
     }
 
     return (
-        <div className="grid grid-col gap-6 border-1 rounded-3xl p-6 bg-white max-w-[370] sm:max-w-[630]">
+        <div className="grid grid-col gap-6 border-1 rounded-3xl p-6 bg-white w-[370] sm:w-[630]">
             <div className="grid gap-6">
                 <div className="flex justify-between">
                     <ul>

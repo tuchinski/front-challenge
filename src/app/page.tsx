@@ -5,6 +5,7 @@ import DrawDetails from "@/components/DrawDetails";
 import TicketCard from "@/components/TicketCard";
 import TicketInfo from "./interfaces/TicketInfo";
 import NumberSelection from "@/components/NumberSelection";
+import CardDraw from "@/components/CardDraw";
 
 const teste = () => {
   console.log("Button Clicked");
@@ -22,6 +23,9 @@ export default function Home() {
   return (
     <>
       <h1 className="">Start Page</h1>
+      <div className="m-4">
+        <CardDraw />
+      </div>
       <div className="m-4">
         <NumberSelection qtdNumbersTicket={6} maxNumTicket={60} typeDraw="megaSena"/>
       </div>
