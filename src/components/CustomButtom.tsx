@@ -17,7 +17,6 @@ export default function CustomButtom({ buttonName, style, onClick, disabled, cla
         secondary: 'bg-button-secondary text-neutral-800'
     }
 
-    console.log(style);
     return(
         <>
             <button 

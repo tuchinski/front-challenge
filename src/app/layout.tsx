@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={geistSans.className} >
-      <body>
+      <body className="bg-footer-drawcard">
           <Header />
           {children}
       </body>
