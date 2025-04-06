@@ -15,7 +15,7 @@ export default function DetailsPage({params}: {params: Promise<{id:string}>}) {
     const id = pathParams.id
     const [tickets, setTickets] = useState<TicketInfo[]>([]);
 
-    const { data:lotteryDrawDetails , error } = useSWR(`https://interview.lotobola.com.pe/draws/${id}`, fetcher) 
+    const { data: lotteryDrawDetails, error } = useSWR<ResponseLotteryDraw>(`https://interview.lotobola.com.pe/draws/${id}`, fetcher)
        
     if (!lotteryDrawDetails) return <div>Loading...</div>
   
@@ -31,9 +31,9 @@ export default function DetailsPage({params}: {params: Promise<{id:string}>}) {
                 </div>
 
                 <div>
-                    <NumberSelection qtdNumbersTicket={lotteryDrawDetails.specification.totalNumbers} maxNumTicket={lotteryDrawDetails.specification.maxNumbers} color={lotteryDrawDetails.color} addTicketFunc={setTickets} />
+                    <NumberSelection drawDetails={lotteryDrawDetails} color={lotteryDrawDetails.color} addTicketFunc={setTickets} />
                     <DrawDetails jackpotValue={`${transformCurrencyToSymbol(lotteryDrawDetails.jackpot.currency)} ${formatMillions(lotteryDrawDetails.jackpot.amount)} Million`} 
-                    dateNextDraw={formatDateOnly(lotteryDrawDetails.drawDate)} tickets={tickets} />
+                    dateNextDraw={formatDateOnly(lotteryDrawDetails.drawDate)} tickets={tickets} color={lotteryDrawDetails.color} />
                 </div>
             </div>
         </>

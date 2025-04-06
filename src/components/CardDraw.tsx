@@ -21,18 +21,11 @@ interface CardDrawProps {
 
 import { formatDateTimeIndex, formatMillions, transformCurrencyToSymbol } from "@/utils";
 import CustomBadge from "./CustomBadge";
-import CustomButtom from "./CustomButtom";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 
 
 export default function CardDraw(props: CardDrawProps){
-
-    // function redirectToDetails(){
-    //     redirect(`/details/${props.id}`);
-    // }
-    const colorTextJackpot = `text-[${props.color}]`;
     return (
         <>
             <div className="sm:w-72 w-96 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
@@ -70,9 +63,6 @@ export default function CardDraw(props: CardDrawProps){
                             hover:opacity-80 transition disabled:opacity-50 bg-button-secondary text-neutral-800" href={`/details/${props.id}`} >Add to cart</Link>
                     <Link className="w-32 text-xs text-center rounded-4xl p-2  
                             hover:opacity-80 transition disabled:opacity-50 bg-button-primary text-white" href={`/details/${props.id}`} >Play</Link>
-
-                    {/* <CustomButtom buttonName="Add to cart" className="w-32" disabled={false} style="secondary"/>
-                    <CustomButtom buttonName="Play"  className="w-32" disabled={false} style="primary" /> */}
                </div>
             </div>
         </>

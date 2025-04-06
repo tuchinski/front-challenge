@@ -4,17 +4,17 @@ import CustomBadge from "./CustomBadge";
 import CustomButtom from "./CustomButtom";
 import { generateRandomNumbers } from "@/utils";
 import TicketInfo from "@/app/interfaces/TicketInfo";
+import ResponseLotteryDraw from "@/app/interfaces/ResponseLotteryDraw";
 
 interface NumberSelectionProps{
-    qtdNumbersTicket: number,
-    maxNumTicket: number,
     color: string,
-    addTicketFunc: Dispatch<SetStateAction<TicketInfo[]>>
+    addTicketFunc: Dispatch<SetStateAction<TicketInfo[]>>,
+    drawDetails: ResponseLotteryDraw
 }
 
 
 
-export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, addTicketFunc} : NumberSelectionProps){
+export default function NumberSelection({ drawDetails, color, addTicketFunc} : NumberSelectionProps){
     const [numbersSelected, setNumbersSelected] = useState<number[]>([]);
 
     const numbers: ReactNode[] = [];
@@ -22,7 +22,12 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, 
     function addTicket() {
         addTicketFunc((prevTickets) => {
             const maxId = Math.max(0, ...prevTickets.map(ticket => ticket.ticketNumber));
-            const newTicket: TicketInfo = { ticketNumber: maxId + 1, numbersSelected: numbersSelected };
+            const newTicket: TicketInfo = { 
+                ticketNumber: maxId + 1, 
+                numbersSelected: numbersSelected.sort((a,b)=>a-b),  
+                lotteryId: drawDetails.id,
+                lotteryName: drawDetails.name
+            };
             return [...prevTickets, newTicket];
         });
         setNumbersSelected([]);
@@ -38,7 +43,7 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, 
             color: 'white'
         }       
     }
-    for (let i = 1; i <= qtdNumbersTicket; i++) {
+    for (let i = 1; i <= drawDetails.specification.totalNumbers; i++) {
         numbers.push(
             <h1 key={i} id={i.toString()} style={numbersSelected.includes(i) ? styles.numberSelected : undefined}
              className={`${styleNumbers} ${styles.numberNotSelected}`} onClick={toggleSelection}>{i}</h1>
@@ -52,13 +57,13 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, 
         if(numbersSelected.includes(number)){
             setNumbersSelected(numbersSelected.filter((n) => n !== number))
         }else{
-            if( numbersSelected.length < maxNumTicket) 
+            if( numbersSelected.length < drawDetails.specification.maxNumbers) 
                 setNumbersSelected([...numbersSelected, number]);
         }
     }
 
     function quickPick(){
-        setNumbersSelected(generateRandomNumbers(1,qtdNumbersTicket,maxNumTicket))
+        setNumbersSelected(generateRandomNumbers(1,drawDetails.specification.totalNumbers,drawDetails.specification.maxNumbers))
     }
     
 
@@ -68,10 +73,10 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, 
                 <div className="flex justify-between">
                     <ul>
                         <li className="text-sm  text-neutral-800 font-semibold">Select your numbers</li>
-                        <li className="text-xs text-neutral-600 ">Choose {maxNumTicket} numbers to create your ticket</li>
+                        <li className="text-xs text-neutral-600 ">Choose {drawDetails.specification.maxNumbers} numbers to create your ticket</li>
                     </ul>
                     <CustomBadge color={color}>
-                        <span>{`${numbersSelected.length}/${maxNumTicket}`}</span>
+                        <span>{`${numbersSelected.length}/${drawDetails.specification.maxNumbers}`}</span>
                     </CustomBadge>
                 </div>
                 <div className="grid gap-2 grid-cols-9 sm:grid-cols-12">
@@ -84,7 +89,7 @@ export default function NumberSelection({qtdNumbersTicket, maxNumTicket, color, 
             </div>
             <div className="flex justify-between">
                 <CustomButtom className="w-32" style="secondary" disabled={false} onClick={quickPick} buttonName="Quick Pick" />
-                <CustomButtom className="w-32" style="primary" disabled={maxNumTicket !== numbersSelected.length} buttonName="Add" onClick={addTicket} />
+                <CustomButtom className="w-32" style="primary" disabled={drawDetails.specification.maxNumbers !== numbersSelected.length} buttonName="Add" onClick={addTicket} />
             </div>
         </div>
     );

@@ -1,9 +1,3 @@
-import CustomBadge from "@/components/CustomBadge";
-import CustomButtom from "@/components/CustomButtom";
-import DrawDetails from "@/components/DrawDetails";
-import TicketCard from "@/components/TicketCard";
-import TicketInfo from "./interfaces/TicketInfo";
-import NumberSelection from "@/components/NumberSelection";
 import CardDraw from "@/components/CardDraw";
 import ResponseLotteryDraw from "./interfaces/ResponseLotteryDraw";
 

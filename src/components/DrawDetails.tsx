@@ -7,11 +7,12 @@ interface DrawDetailsProps{
     tickets: TicketInfo[];
     jackpotValue: string;
     dateNextDraw: string;
+    color: string;
 }
 
 
-export default function DrawDetails({tickets, jackpotValue, dateNextDraw}: DrawDetailsProps){
-    
+export default function DrawDetails({tickets, jackpotValue, dateNextDraw, color}: DrawDetailsProps){
+
     return (
         <>
             <div id="drawDetails" className="bg-white border-1 rounded-3xl border-[#F1F1F1] 
@@ -42,7 +43,7 @@ export default function DrawDetails({tickets, jackpotValue, dateNextDraw}: DrawD
 
                         {
                             tickets.map((ticketatual) => {
-                                return <TicketCard key={ticketatual.ticketNumber} type="megaSena" ticketInfo={ticketatual}/>
+                                return <TicketCard color={color} key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
                             })
                         }
                     </div>
