@@ -26,7 +26,8 @@ export default function NumberSelection({ drawDetails, color, addTicketFunc} : N
                 ticketNumber: maxId + 1, 
                 numbersSelected: numbersSelected.sort((a,b)=>a-b),  
                 lotteryId: drawDetails.id,
-                lotteryName: drawDetails.name
+                lotteryName: drawDetails.name,
+                lotteryColor: drawDetails.color
             };
             return [...prevTickets, newTicket];
         });

@@ -11,7 +11,7 @@ interface DrawDetailsProps{
 }
 
 
-export default function DrawDetails({tickets, jackpotValue, dateNextDraw, color}: DrawDetailsProps){
+export default function DrawDetails({tickets, jackpotValue, dateNextDraw}: DrawDetailsProps){
 
     return (
         <>
@@ -43,7 +43,7 @@ export default function DrawDetails({tickets, jackpotValue, dateNextDraw, color}
 
                         {
                             tickets.map((ticketatual) => {
-                                return <TicketCard color={color} key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
+                                return <TicketCard key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
                             })
                         }
                     </div>

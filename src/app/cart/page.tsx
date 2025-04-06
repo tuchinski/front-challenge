@@ -21,8 +21,6 @@ export default function Cart() {
                     <div className="w-full min-w-xs bg-white border-1 border-border-header rounded-3xl p-6 flex flex-col gap-5">
                         <h2>Your tickets</h2>
                         <TicketCard ticketInfo={tst} type="megaSena" />
-                        <TicketCard ticketInfo={tst} type="megaSena" />
-                        <TicketCard ticketInfo={tst} type="megaSena" />
                     </div>
                     <div className="w-full min-w-60 bg-white border-1 max-w-96 border-border-header rounded-3xl p-6 flex flex-col gap-6 h-fit">
                         <h2 className="text-neutral-800 font-bold">Order Summary</h2>

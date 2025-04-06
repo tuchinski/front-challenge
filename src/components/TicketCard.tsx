@@ -2,19 +2,18 @@ import TicketInfo from "@/app/interfaces/TicketInfo";
 
 interface TicketCardProps {
     ticketInfo: TicketInfo;
-    color: string;
 }
 
-export default function TicketCard({ticketInfo, color}: TicketCardProps){
+export default function TicketCard({ticketInfo}: TicketCardProps){
     const styles = {
         commonBallStyle: 'w-8 h-8 rounded-2xl px-3 py-1 text-white flex items-center justify-center',
         ticket: {
-            background: `${color}20`,
-            borderColor: `${color}99`
+            background: `${ticketInfo.lotteryColor}20`,
+            borderColor: `${ticketInfo.lotteryColor}99`
         },
         selectedNumbers: {
-            background: color,
-            borderColor: `${color}20`,
+            background: ticketInfo.lotteryColor,
+            borderColor: `${ticketInfo.lotteryColor}20`,
             color: 'white'
         }       
     }
@@ -37,7 +36,7 @@ export default function TicketCard({ticketInfo, color}: TicketCardProps){
                     }
                 </div>
                 <div>
-                    <h1 style={{borderColor: `${color}40`}} className={`border-1 border-dashed`}></h1>
+                    <h1 style={{borderColor: `${ticketInfo.lotteryColor}40`}} className={`border-1 border-dashed`}></h1>
                 </div>
                 <div>
                     <h2 className="text-neutral-600 text-xs flex justify-center">Good luck!</h2>
