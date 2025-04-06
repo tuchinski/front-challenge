@@ -8,7 +8,7 @@ interface CardDrawProps {
         amount: number;
         currency: string;
     }
-    specifications:{
+    specification:{
         maxNumbers: number;
         totalNumbers: number;
     }
@@ -19,14 +19,19 @@ interface CardDrawProps {
 }
 
 
-import { formatDateTimePTBR, formatMillions, transformCurrencyToSymbol } from "@/utils";
+import { formatDateTimeIndex, formatMillions, transformCurrencyToSymbol } from "@/utils";
 import CustomBadge from "./CustomBadge";
 import CustomButtom from "./CustomButtom";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 
 
 export default function CardDraw(props: CardDrawProps){
 
+    // function redirectToDetails(){
+    //     redirect(`/details/${props.id}`);
+    // }
     const colorTextJackpot = `text-[${props.color}]`;
     return (
         <>
@@ -48,7 +53,7 @@ export default function CardDraw(props: CardDrawProps){
                                 <span className="text-4xl text-neutral-800">Million</span>
                             </div>
                             <CustomBadge color={props.color}>
-                                <span><strong>Next draw</strong>: {formatDateTimePTBR(props.drawDate)}</span>
+                                <span><strong>Next draw</strong>: {formatDateTimeIndex(props.drawDate)}</span>
                             </CustomBadge>
                         </div>
                         <div className="flex justify-between w-full rounded-b-4xl bg-footer-drawcard 
@@ -61,8 +66,13 @@ export default function CardDraw(props: CardDrawProps){
                    </div>
                </div>
                <div className="flex justify-between w-full px-4">
-                    <CustomButtom buttonName="Add to cart" className="w-32" disabled={false} style="secondary"/>
-                    <CustomButtom buttonName="Play"  className="w-32" disabled={false} style="primary"/>
+                    <Link className="w-32 text-center text-xs rounded-4xl p-2  
+                            hover:opacity-80 transition disabled:opacity-50 bg-button-secondary text-neutral-800" href={`/details/${props.id}`} >Add to cart</Link>
+                    <Link className="w-32 text-xs text-center rounded-4xl p-2  
+                            hover:opacity-80 transition disabled:opacity-50 bg-button-primary text-white" href={`/details/${props.id}`} >Play</Link>
+
+                    {/* <CustomButtom buttonName="Add to cart" className="w-32" disabled={false} style="secondary"/>
+                    <CustomButtom buttonName="Play"  className="w-32" disabled={false} style="primary" /> */}
                </div>
             </div>
         </>

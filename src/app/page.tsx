@@ -5,26 +5,9 @@ import TicketCard from "@/components/TicketCard";
 import TicketInfo from "./interfaces/TicketInfo";
 import NumberSelection from "@/components/NumberSelection";
 import CardDraw from "@/components/CardDraw";
+import ResponseLotteryDraw from "./interfaces/ResponseLotteryDraw";
 
-interface ResponseLotteryDraw {
-  id: string,
-  name: string,
-  color: string,
-  drawDate: string,
-  logoUrl: string,
-  jackpot: {
-    amount: number,
-    currency: string
-  }
-  specifications: {
-    maxNumbers: number,
-    totalNumbers: number,
-  }
-  pricing: {
-    amount: number,
-    currency: string
-  }
-}
+
 export const revalidate = 60;
 
 export default async function Home() {
@@ -44,6 +27,8 @@ export default async function Home() {
           </h2>
           <h2 className="text-neutral-600 text-sm"></h2>
         </div>
+
+        
 
         <div className="mt-8 flex flex-col gap-4 items-center sm:flex-row sm:justify-center sm:items-center sm:gap-20">
           {
