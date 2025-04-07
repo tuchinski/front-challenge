@@ -8,8 +8,8 @@ describe('buying ticket', () => {
     it('User should be able to purchase and check if the toast is visible', () => {
         //clicking in the first card
         const a = cy.get('[data-cy="CardDraw"]').first()
-        a.contains('Add to cart')
-        a.contains('Add to cart').click()
+        a.contains('Play')
+        a.contains('Play').click()
         cy.url().should('include', '/details')
         
         //make a quick pick and continue to cart
@@ -28,8 +28,8 @@ describe('buying ticket', () => {
     it('User should be not able to purchase a ticket with repeated numbers', () => {
         //clicking in the first card
         const a = cy.get('[data-cy="CardDraw"]').first()
-        a.contains('Add to cart')
-        a.contains('Add to cart').click()
+        a.contains('Play')
+        a.contains('Play').click()
         cy.url().should('include', '/details')
         
         //selecting 2 tickets with repeated numbers
@@ -51,7 +51,7 @@ describe('buying ticket', () => {
         cy.url().should('include', '/cart')
         // //click in buy button and check toast
         cy.get('[data-cy="button-primary"]').click()
-        cy.contains('Failed to purchase tickets').should('be.visible')
+        cy.contains('Sorry, something went wrong while purchasing tickets. Try again later.').should('be.visible')
         cy.contains('Fingers crossed! Ticket bought!').should('not.exist')
         
     })

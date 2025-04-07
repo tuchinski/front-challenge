@@ -3,7 +3,7 @@ import ResponseLotteryDraw from "@/app/interfaces/Response/ResponseLotteryDraw";
 import TicketInfo from "@/app/interfaces/TicketInfo";
 import DrawDetails from "@/components/DrawDetails";
 import NumberSelection from "@/components/NumberSelection";
-import { formatDateOnly, formatMillions, transformCurrencyToSymbol } from "@/utils";
+import { formatDateOnly, formatMillions, saveTicketsOnCart, transformCurrencyToSymbol } from "@/utils";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
 import useSWR from "swr";
@@ -21,14 +21,8 @@ export default function DetailsPage({ params }: { params: Promise<{ id: string }
 
     if (!lotteryDrawDetails) return <div>Loading...</div>
 
-    function saveTicketsOnCart(){
-        const itensCart = localStorage.getItem("cart");
-        let newItensCart = tickets;
-        if(itensCart){
-            const oldCart:TicketInfo[] = JSON.parse(itensCart);
-            newItensCart = [...oldCart, ...newItensCart];
-        }
-        localStorage.setItem("cart", JSON.stringify(newItensCart));
+    function saveTicketsOnCartAndRedirect(){
+        saveTicketsOnCart(tickets);
         setTickets([]);
         router.push('/cart');    
     }
@@ -45,7 +39,7 @@ export default function DetailsPage({ params }: { params: Promise<{ id: string }
 
                 <div className=" flex flex-col gap-4 items-center sm:flex-row sm:items-baseline">
                     <NumberSelection drawDetails={lotteryDrawDetails} color={lotteryDrawDetails.color} addTicketFunc={setTickets} />
-                    <DrawDetails addTicketsToCart={saveTicketsOnCart}  jackpotValue={`${transformCurrencyToSymbol(lotteryDrawDetails.jackpot.currency)} ${formatMillions(lotteryDrawDetails.jackpot.amount)} Million`}
+                    <DrawDetails addTicketsToCart={saveTicketsOnCartAndRedirect}  jackpotValue={`${transformCurrencyToSymbol(lotteryDrawDetails.jackpot.currency)} ${formatMillions(lotteryDrawDetails.jackpot.amount)} Million`}
                         dateNextDraw={formatDateOnly(lotteryDrawDetails.drawDate)} tickets={tickets} color={lotteryDrawDetails.color} />
                 </div>
             </div>

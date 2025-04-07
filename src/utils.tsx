@@ -1,3 +1,5 @@
+import TicketInfo from "./app/interfaces/TicketInfo";
+
 export function formatMillions(amount: number): string {
     return (amount / 1_000_000).toFixed(0);
 }
@@ -42,4 +44,13 @@ export function generateRandomNumbers(rangeStart: number, rangeEnd: number, qtdN
             numbersGenerated.push(numberRandom);
     }
     return numbersGenerated;
+}
+
+export function saveTicketsOnCart(tickets: TicketInfo[]){
+    const itensCart = localStorage.getItem("cart");
+    if(itensCart){
+        const oldCart:TicketInfo[] = JSON.parse(itensCart);
+        tickets = [...oldCart, ...tickets];
+    }
+    localStorage.setItem("cart", JSON.stringify(tickets)); 
 }

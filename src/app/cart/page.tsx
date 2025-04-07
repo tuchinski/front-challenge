@@ -29,13 +29,7 @@ export default function Cart() {
             setTickets([])
             toast.success("Fingers crossed! Ticket bought!");
         } catch (err) {
-            let message: string;
-            if (err instanceof Error) {
-                message = err.message
-            } else {
-                message = "Sorry, something went wrong while purchasing tickets. Try again later.";
-                console.log(err);
-            }
+            const message = "Sorry, something went wrong while purchasing tickets. Try again later.";
             toast.error(message)
         }
 

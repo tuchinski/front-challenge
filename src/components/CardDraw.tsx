@@ -1,3 +1,4 @@
+'use client'
 interface CardDrawProps {
     id: string;
     name: string;
@@ -19,13 +20,26 @@ interface CardDrawProps {
 }
 
 
-import { formatDateTimeIndex, formatMillions, transformCurrencyToSymbol } from "@/utils";
+import { formatDateTimeIndex, formatMillions, generateRandomNumbers, saveTicketsOnCart, transformCurrencyToSymbol } from "@/utils";
 import CustomBadge from "./CustomBadge";
 import Link from "next/link";
-
-
+import CustomButtom from "./CustomButtom";
+import toast from "react-hot-toast";
 
 export default function CardDraw(props: CardDrawProps){
+    function addToCart(){
+        saveTicketsOnCart([{
+            id: Math.random().toString(36).substr(2, 9),
+            lotteryColor: props.color,
+            lotteryId: props.id,
+            lotteryName: props.name,
+            numbersSelected:generateRandomNumbers(1,props.specification.totalNumbers,props.specification.maxNumbers).sort((a,b) => a-b),
+            ticketNumber: 1,
+            ticketValue: props.pricing
+        }])
+        toast.success(`${props.name} ticket added to your cart. Good luck!`)
+    }
+    
     return (
         <>
             <div data-cy='CardDraw' className="sm:w-72 w-96 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
@@ -59,8 +73,7 @@ export default function CardDraw(props: CardDrawProps){
                    </div>
                </div>
                <div className="flex justify-between w-full px-2">
-                    <Link className="w-32 text-center text-xs rounded-4xl p-2  
-                            hover:opacity-80 transition disabled:opacity-50 bg-button-secondary text-neutral-800" href={`/details/${props.id}`} >Add to cart</Link>
+                    <CustomButtom className="w-32" buttonName="Add to Cart" disabled={false} style="secondary" onClick={addToCart}  />
                     <Link className="w-32 text-xs text-center rounded-4xl p-2  
                             hover:opacity-80 transition disabled:opacity-50 bg-button-primary text-white" href={`/details/${props.id}`} >Play</Link>
                </div>
