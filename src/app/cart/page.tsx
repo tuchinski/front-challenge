@@ -23,12 +23,12 @@ export default function Cart() {
     }
 
     const cartPurchaseTicket = async () => {
-        try{
+        try {
             let a = await purchaseTickets(tickets)
             localStorage.setItem('cart', JSON.stringify([]));
             setTickets([])
             toast.success("Fingers crossed! Ticket bought!");
-        }catch(err){
+        } catch (err) {
             let message: string;
             if (err instanceof Error) {
                 message = err.message
@@ -38,7 +38,7 @@ export default function Cart() {
             }
             toast.error(message)
         }
-        
+
     }
 
 
@@ -58,10 +58,10 @@ export default function Cart() {
                             tickets.map((ticket, index) => <TicketCard onDelete={deleteTicket} pricing={true} ticketInfo={ticket} key={index} />)
                         }
                     </div>
-                    <div className="w-full min-w-60 bg-white border-1 max-w-96 border-border-header rounded-3xl p-6 flex flex-col gap-6 h-fit">
+                    <div hidden={tickets.length == 0} className="w-full min-w-60 bg-white border-1 max-w-96 border-border-header rounded-3xl p-6 flex flex-col gap-6 h-fit">
                         <h2 className="text-neutral-800 font-bold">Order Summary</h2>
                         <h3 className="text-neutral-600">Total</h3>
-                        <h3 className="text-neutral-950 font-semibold text-">
+                        <h3 className="text-neutral-950 font-semibold">
                             {tickets[0] && transformCurrencyToSymbol(tickets[0].ticketValue.currency)}
                             {
                                 tickets.reduce((acc, ticket) => {
@@ -69,7 +69,7 @@ export default function Cart() {
                                 }, 0).toFixed(2)
                             }
                         </h3>
-                        <CustomButtom disabled={false} buttonName="Buy" onClick={cartPurchaseTicket} style="primary" />
+                        <CustomButtom disabled={tickets.length == 0} buttonName="Buy" onClick={cartPurchaseTicket} style="primary" />
                     </div>
                 </div>
             </div>

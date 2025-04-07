@@ -28,7 +28,9 @@ export async function purchaseTickets(tickets: TicketInfo[]): Promise<ResponsePu
     })
     if(data.ok){
         console.log("ok");
-        return await data.json();
+        const dataParsed = await data.json();
+        console.log(data.url, dataParsed);
+        return dataParsed;
     } else{
         const error:ResponseError = await data.json()
         console.error(error);
