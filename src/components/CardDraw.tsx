@@ -22,6 +22,7 @@ interface CardDrawProps {
 import { formatDateTimeIndex, formatMillions, transformCurrencyToSymbol } from "@/utils";
 import CustomBadge from "./CustomBadge";
 import Link from "next/link";
+import { Dot } from "lucide-react";
 
 
 

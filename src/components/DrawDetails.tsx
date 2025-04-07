@@ -2,16 +2,19 @@
 import TicketInfo from "@/app/interfaces/TicketInfo";
 import CustomButtom from "./CustomButtom";
 import TicketCard from "./TicketCard";
+import { Dispatch, SetStateAction } from "react";
 
 interface DrawDetailsProps{
     tickets: TicketInfo[];
     jackpotValue: string;
     dateNextDraw: string;
     color: string;
+    storeTicketsCart?: (Dispatch<SetStateAction<TicketInfo[]>>),
+    addTicketsToCart?: () => void;
 }
 
 
-export default function DrawDetails({tickets, jackpotValue, dateNextDraw}: DrawDetailsProps){
+export default function DrawDetails({tickets, jackpotValue, dateNextDraw, storeTicketsCart, addTicketsToCart}: DrawDetailsProps){
 
     return (
         <>
@@ -43,14 +46,14 @@ export default function DrawDetails({tickets, jackpotValue, dateNextDraw}: DrawD
 
                         {
                             tickets.map((ticketatual) => {
-                                return <TicketCard key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
+                                return <TicketCard pricing={false} key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
                             })
                         }
                     </div>
                 </div>
 
                 <div>
-                    <CustomButtom buttonName="Continue" disabled={true} style="primary" className="w-full" />
+                    <CustomButtom buttonName="Continue" onClick={addTicketsToCart} disabled={tickets.length === 0} style="primary" className="w-full" />
                 </div>
 
             </div>

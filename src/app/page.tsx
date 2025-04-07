@@ -1,5 +1,5 @@
 import CardDraw from "@/components/CardDraw";
-import ResponseLotteryDraw from "./interfaces/ResponseLotteryDraw";
+import ResponseLotteryDraw from "./interfaces/Response/ResponseLotteryDraw";
 
 
 export const revalidate = 60;

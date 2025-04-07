@@ -1,10 +1,10 @@
 'use client';
-import { Dispatch, MouseEvent, ReactNode, SetStateAction, useState } from "react";
+import { Dispatch, MouseEvent, ReactNode, SetStateAction, useId, useState } from "react";
 import CustomBadge from "./CustomBadge";
 import CustomButtom from "./CustomButtom";
 import { generateRandomNumbers } from "@/utils";
 import TicketInfo from "@/app/interfaces/TicketInfo";
-import ResponseLotteryDraw from "@/app/interfaces/ResponseLotteryDraw";
+import ResponseLotteryDraw from "@/app/interfaces/Response/ResponseLotteryDraw";
 
 interface NumberSelectionProps{
     color: string,
@@ -23,11 +23,13 @@ export default function NumberSelection({ drawDetails, color, addTicketFunc} : N
         addTicketFunc((prevTickets) => {
             const maxId = Math.max(0, ...prevTickets.map(ticket => ticket.ticketNumber));
             const newTicket: TicketInfo = { 
+                id: Math.random().toString(36).substr(2, 9),
                 ticketNumber: maxId + 1, 
                 numbersSelected: numbersSelected.sort((a,b)=>a-b),  
                 lotteryId: drawDetails.id,
                 lotteryName: drawDetails.name,
-                lotteryColor: drawDetails.color
+                lotteryColor: drawDetails.color,
+                ticketValue: drawDetails.pricing
             };
             return [...prevTickets, newTicket];
         });
