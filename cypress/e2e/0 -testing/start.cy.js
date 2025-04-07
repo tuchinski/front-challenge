@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('testing root route', () => {
     beforeEach(() => {
         cy.visit('localhost:3000/')

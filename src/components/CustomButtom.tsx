@@ -20,6 +20,7 @@ export default function CustomButtom({ buttonName, style, onClick, disabled, cla
     return(
         <>
             <button 
+                data-cy={`button-${style}`}
                 type="button"
                 className={`${colorVariants[style]} text-xs rounded-4xl p-2  
                             hover:opacity-80 transition disabled:opacity-50 ${className}`}

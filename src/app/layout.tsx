@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en" className={geistSans.className} >
       <body className="bg-footer-drawcard">
           <Header />
-          <Toaster position="top-right" />
+          <Toaster data-cy='toaster' position="top-right" />
           {children}
       </body>
     </html>
