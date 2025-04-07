@@ -29,7 +29,7 @@ import { Dot } from "lucide-react";
 export default function CardDraw(props: CardDrawProps){
     return (
         <>
-            <div className="sm:w-72 w-96 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
+            <div data-cy='CardDraw' className="sm:w-72 w-96 bg-bg-drawcard rounded-3xl flex  flex-col gap-4 items-center p-2">
                <div className="w-full bg-white rounded-3xl flex flex-col gap-6">
                    <div className="flex items-center center">
                         <img className="size-16 flex justify-center items-center" src={props.logoUrl} alt="alt" />
@@ -59,7 +59,7 @@ export default function CardDraw(props: CardDrawProps){
                         </div>
                    </div>
                </div>
-               <div className="flex justify-between w-full px-4">
+               <div className="flex justify-between w-full px-2">
                     <Link className="w-32 text-center text-xs rounded-4xl p-2  
                             hover:opacity-80 transition disabled:opacity-50 bg-button-secondary text-neutral-800" href={`/details/${props.id}`} >Add to cart</Link>
                     <Link className="w-32 text-xs text-center rounded-4xl p-2  
