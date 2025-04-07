@@ -5,6 +5,7 @@ import CustomButtom from "@/components/CustomButtom";
 import { useEffect, useState } from "react";
 import { transformCurrencyToSymbol } from "@/utils";
 import { purchaseTickets } from "../actions";
+import toast from "react-hot-toast";
 
 export default function Cart() {
     const [tickets, setTickets] = useState<TicketInfo[]>([]);
@@ -18,12 +19,26 @@ export default function Cart() {
     function deleteTicket(ticketId: string) {
         setTickets(prevTickets => prevTickets.filter(ticket => ticket.id !== ticketId));
         localStorage.setItem('cart', JSON.stringify(tickets.filter(ticket => ticket.id !== ticketId)));
+        toast.success("Ticket deleted");
     }
 
-    const a = async () => {
-        await purchaseTickets(tickets)
-        localStorage.setItem('cart', JSON.stringify([]));
-        setTickets([])
+    const cartPurchaseTicket = async () => {
+        try{
+            let a = await purchaseTickets(tickets)
+            localStorage.setItem('cart', JSON.stringify([]));
+            setTickets([])
+            toast.success("Fingers crossed! Ticket bought!");
+        }catch(err){
+            let message: string;
+            if (err instanceof Error) {
+                message = err.message
+            } else {
+                message = "Sorry, something went wrong while purchasing tickets. Try again later.";
+                console.log(err);
+            }
+            toast.error(message)
+        }
+        
     }
 
 
@@ -54,7 +69,7 @@ export default function Cart() {
                                 }, 0).toFixed(2)
                             }
                         </h3>
-                        <CustomButtom disabled={false} buttonName="Buy" onClick={a} style="primary" />
+                        <CustomButtom disabled={false} buttonName="Buy" onClick={cartPurchaseTicket} style="primary" />
                     </div>
                 </div>
             </div>

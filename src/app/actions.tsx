@@ -1,6 +1,7 @@
 'use server'
 
 import RequestPurchaseTicket from "./interfaces/Request/RequestPurchaseTicket";
+import ResponseError from "./interfaces/Response/ResponseError";
 import ResponsePurchaseTicket from "./interfaces/Response/ResponsePurchaseTicket";
 import TicketInfo from "./interfaces/TicketInfo";
 
@@ -29,7 +30,9 @@ export async function purchaseTickets(tickets: TicketInfo[]): Promise<ResponsePu
         console.log("ok");
         return await data.json();
     } else{
-        return undefined;
+        const error:ResponseError = await data.json()
+        console.error(error);
+        throw new Error(`Failed to purchase tickets: ${error.message}`);
     }
 
 
