@@ -49,10 +49,22 @@ describe('buying ticket', () => {
         
         cy.get('[data-cy="button-primary"]').contains("Continue").click()
         cy.url().should('include', '/cart')
-        // //click in buy button and check toast
+        //click in buy button and check toast
         cy.get('[data-cy="button-primary"]').click()
         cy.contains('Sorry, something went wrong while purchasing tickets. Try again later.').should('be.visible')
         cy.contains('Fingers crossed! Ticket bought!').should('not.exist')
         
+    })
+    it("User should be able to add Powerball to cart",()=> {
+        const lotteryDrawName = 'Powerball'
+        const drawCard = cy.get('[data-cy="CardDraw"]').filter(`:contains("${lotteryDrawName}")`)
+        drawCard.find('[data-cy="button-secondary"]').click()
+        cy.contains(`${lotteryDrawName} ticket added to your cart. Good luck!`).should('be.visible')
+        cy.get('[data-cy="header-cart"]').click()
+
+        cy.get('#card').contains(`${lotteryDrawName}`)
+        cy.get('[data-cy="button-primary"]').click()
+        cy.contains('Sorry, something went wrong while purchasing tickets. Try again later.').should('not.exist')
+        cy.contains('Fingers crossed! Ticket bought!').should('be.visible')
     })
 })
