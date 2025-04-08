@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function Cart() {
     const [tickets, setTickets] = useState<TicketInfo[]>([]);
+    const [load, setLoad] = useState<boolean>(false);
     const router = useRouter();
     useEffect(() => {
         const rawTickets = localStorage.getItem('cart');
@@ -26,11 +27,13 @@ export default function Cart() {
 
     const cartPurchaseTicket = async () => {
         try {
+            setLoad(true);
             await purchaseTickets(tickets)
             localStorage.setItem('cart', JSON.stringify([]));
             setTickets([])
             toast.success("Fingers crossed! Ticket bought!");
             router.push('/')
+            setLoad(false)
         } catch (err) {
             const message = "Sorry, something went wrong while purchasing tickets. Try again later.";
             toast.error(message)
@@ -66,7 +69,7 @@ export default function Cart() {
                                 }, 0).toFixed(2)
                             }
                         </h3>
-                        <CustomButtom disabled={tickets.length == 0} buttonName="Buy" onClick={cartPurchaseTicket} style="primary" />
+                        <CustomButtom disabled={tickets.length == 0 || load} buttonName="Buy" onClick={cartPurchaseTicket} style="primary" />
                     </div>
                 </div>
             </div>
