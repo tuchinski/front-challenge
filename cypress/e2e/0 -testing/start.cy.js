@@ -14,6 +14,6 @@ describe('testing root route', () => {
     })
     
     it('assert that 3 lottery cards are displayed', () => {
-        cy.get('[data-cy="CardDraw"]').should('be.visible').should('have.lengthOf', 4);
+        cy.get('[data-cy="CardDraw"]').should('be.visible').should('have.lengthOf', 3);
     })
 })
