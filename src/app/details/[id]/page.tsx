@@ -15,10 +15,7 @@ const fetcher = (...args: [string]) => fetch(...args).then((res) =>{
     if(res.ok)
         return res.json()
     else{
-        const error = new Error('An error occurred while fetching the data.')
-    // Adicionar informação extra ao objeto de erro.
-        
-        
+        const error = new Error('An error occurred while fetching the data.')      
         throw error
     }
 })

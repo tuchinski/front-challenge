@@ -5,9 +5,6 @@ import ResponseError from "./interfaces/Response/ResponseError";
 import ResponsePurchaseTicket from "./interfaces/Response/ResponsePurchaseTicket";
 import TicketInfo from "./interfaces/TicketInfo";
 
-
-
-
 export async function purchaseTickets(tickets: TicketInfo[]): Promise<ResponsePurchaseTicket| undefined> {
     const requestBody = tickets.reduce((acc: RequestPurchaseTicket, ticket: TicketInfo) => {
         const i = acc.tickets.findIndex((oldTicket) => oldTicket.drawId === ticket.lotteryId);

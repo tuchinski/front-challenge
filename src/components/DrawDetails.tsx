@@ -1,8 +1,6 @@
-// 'use client'
 import TicketInfo from "@/app/interfaces/TicketInfo";
 import CustomButtom from "./CustomButtom";
 import TicketCard from "./TicketCard";
-import { Dispatch, SetStateAction } from "react";
 
 interface DrawDetailsProps{
     tickets: TicketInfo[];

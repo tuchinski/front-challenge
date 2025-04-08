@@ -1,4 +1,4 @@
-name: Cypress Testing
+name: Cypress Testing and Vercel deploy
 
 on: 
   push: 

@@ -1,4 +1,10 @@
 'use client'
+import { formatDateTimeIndex, formatMillions, generateRandomNumbers, saveTicketsOnCart, transformCurrencyToSymbol } from "@/utils";
+import CustomBadge from "./CustomBadge";
+import Link from "next/link";
+import CustomButtom from "./CustomButtom";
+import toast from "react-hot-toast";
+import { Dot } from "lucide-react";
 interface CardDrawProps {
     id: string;
     name: string;
@@ -18,14 +24,6 @@ interface CardDrawProps {
         currency: string;
     }
 }
-
-
-import { formatDateTimeIndex, formatMillions, generateRandomNumbers, saveTicketsOnCart, transformCurrencyToSymbol } from "@/utils";
-import CustomBadge from "./CustomBadge";
-import Link from "next/link";
-import CustomButtom from "./CustomButtom";
-import toast from "react-hot-toast";
-import { AlarmClockCheck, Dot } from "lucide-react";
 
 export default function CardDraw(props: CardDrawProps){
     function addToCart(){

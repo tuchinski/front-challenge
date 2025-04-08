@@ -1,6 +1,5 @@
 import CardDraw from "@/components/CardDraw";
 import ResponseLotteryDraw from "./interfaces/Response/ResponseLotteryDraw";
-import { isUndefined } from "swr/_internal";
 import CustomError from "@/components/CustomError";
 
 
