@@ -15,8 +15,8 @@ export function formatDateOnly(datetime: string): string {
 export function formatDateTimeIndex(datetime: string): string {
     const date = new Date(datetime);
     
-    const dayOfWeek = date.toLocaleString('us', { weekday: 'long' });
-    const month = date.toLocaleString('us', { month: 'long' });
+    const dayOfWeek = date.toLocaleString('en-US', { weekday: 'long' });
+    const month = date.toLocaleString('en-US', { month: 'long' });
     const day = date.getDate();
     return `${dayOfWeek}, ${month} ${day}`;
 }

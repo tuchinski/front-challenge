@@ -1,6 +1,8 @@
 'use client'
 import ResponseLotteryDraw from "@/app/interfaces/Response/ResponseLotteryDraw";
 import TicketInfo from "@/app/interfaces/TicketInfo";
+import CustomError from "@/components/CustomError";
+import CustomLoading from "@/components/CustomLoading";
 import DrawDetails from "@/components/DrawDetails";
 import NumberSelection from "@/components/NumberSelection";
 import { formatDateOnly, formatMillions, saveTicketsOnCart, transformCurrencyToSymbol } from "@/utils";
@@ -9,7 +11,17 @@ import { use, useState } from "react";
 import useSWR from "swr";
 
 
-const fetcher = (...args: [string]) => fetch(...args).then((res) => res.json())
+const fetcher = (...args: [string]) => fetch(...args).then((res) =>{
+    if(res.ok)
+        return res.json()
+    else{
+        const error = new Error('An error occurred while fetching the data.')
+    // Adicionar informação extra ao objeto de erro.
+        
+        
+        throw error
+    }
+})
 
 export default function DetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const pathParams = use(params);
@@ -19,7 +31,9 @@ export default function DetailsPage({ params }: { params: Promise<{ id: string }
     
     const { data: lotteryDrawDetails, error } = useSWR<ResponseLotteryDraw>(`https://interview.lotobola.com.pe/draws/${id}`, fetcher)
 
-    if (!lotteryDrawDetails) return <div>Loading...</div>
+    if(error) return <CustomError/>
+    if (!lotteryDrawDetails) return <CustomLoading />
+
 
     function saveTicketsOnCartAndRedirect(){
         saveTicketsOnCart(tickets);

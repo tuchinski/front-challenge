@@ -25,6 +25,7 @@ import CustomBadge from "./CustomBadge";
 import Link from "next/link";
 import CustomButtom from "./CustomButtom";
 import toast from "react-hot-toast";
+import { AlarmClockCheck, Dot } from "lucide-react";
 
 export default function CardDraw(props: CardDrawProps){
     function addToCart(){
@@ -63,9 +64,12 @@ export default function CardDraw(props: CardDrawProps){
                                 <span><strong>Next draw</strong>: {formatDateTimeIndex(props.drawDate)}</span>
                             </CustomBadge>
                         </div>
-                        <div className="flex justify-between w-full rounded-b-4xl bg-footer-drawcard 
+                        <div className="flex justify-between w-full rounded-b-3xl bg-footer-drawcard items-center
                                         px-4 py-2 mt-auto">
-                            <h2 className="text-neutral-500 text-xs">Draw live stream available</h2>
+                            <div className="flex items-center">
+                                <Dot color="green"/>
+                                <h2 className="text-neutral-500 text-xs">Draw live stream available</h2>
+                            </div>
                             <h2 className="font-medium text-neutral-500 text-xs">
                                 {`${transformCurrencyToSymbol(props.pricing.currency)} ${props.pricing.amount}`}
                             </h2>
