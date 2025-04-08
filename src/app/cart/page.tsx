@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import { transformCurrencyToSymbol } from "@/utils";
 import { purchaseTickets } from "../actions";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Cart() {
     const [tickets, setTickets] = useState<TicketInfo[]>([]);
+    const router = useRouter();
     useEffect(() => {
         const rawTickets = localStorage.getItem('cart');
         if (rawTickets) {
@@ -24,10 +26,11 @@ export default function Cart() {
 
     const cartPurchaseTicket = async () => {
         try {
-            let a = await purchaseTickets(tickets)
+            await purchaseTickets(tickets)
             localStorage.setItem('cart', JSON.stringify([]));
             setTickets([])
             toast.success("Fingers crossed! Ticket bought!");
+            router.push('/')
         } catch (err) {
             const message = "Sorry, something went wrong while purchasing tickets. Try again later.";
             toast.error(message)
@@ -49,7 +52,7 @@ export default function Cart() {
                         <h2>Your tickets</h2>
                         <h3 hidden={tickets.length != 0} className="text-neutral-600 text-sm">Your cart is empty!</h3>
                         {
-                            tickets.map((ticket, index) => <TicketCard onDelete={deleteTicket} pricing={true} ticketInfo={ticket} key={index} />)
+                            tickets.map((ticket, index) => <TicketCard onDelete={deleteTicket} pricing={true} ticketInfo={ticket} key={index + 1} ticketNumber={index + 1} />)
                         }
                     </div>
                     <div hidden={tickets.length == 0} className="w-full min-w-60 bg-white border-1 max-w-96 border-border-header rounded-3xl p-6 flex flex-col gap-6 h-fit">

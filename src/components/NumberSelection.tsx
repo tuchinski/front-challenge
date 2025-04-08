@@ -21,10 +21,8 @@ export default function NumberSelection({ drawDetails, color, addTicketFunc} : N
     
     function addTicket() {
         addTicketFunc((prevTickets) => {
-            const maxId = Math.max(0, ...prevTickets.map(ticket => ticket.ticketNumber));
             const newTicket: TicketInfo = { 
                 id: Math.random().toString(36).substr(2, 9),
-                ticketNumber: maxId + 1, 
                 numbersSelected: numbersSelected.sort((a,b)=>a-b),  
                 lotteryId: drawDetails.id,
                 lotteryName: drawDetails.name,

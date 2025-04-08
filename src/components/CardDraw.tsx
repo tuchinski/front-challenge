@@ -35,7 +35,6 @@ export default function CardDraw(props: CardDrawProps){
             lotteryId: props.id,
             lotteryName: props.name,
             numbersSelected:generateRandomNumbers(1,props.specification.totalNumbers,props.specification.maxNumbers).sort((a,b) => a-b),
-            ticketNumber: 1,
             ticketValue: props.pricing
         }])
         toast.success(`${props.name} ticket added to your cart. Good luck!`)

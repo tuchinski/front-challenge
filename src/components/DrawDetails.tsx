@@ -9,12 +9,11 @@ interface DrawDetailsProps{
     jackpotValue: string;
     dateNextDraw: string;
     color: string;
-    storeTicketsCart?: (Dispatch<SetStateAction<TicketInfo[]>>),
     addTicketsToCart?: () => void;
 }
 
 
-export default function DrawDetails({tickets, jackpotValue, dateNextDraw, storeTicketsCart, addTicketsToCart}: DrawDetailsProps){
+export default function DrawDetails({tickets, jackpotValue, dateNextDraw, addTicketsToCart}: DrawDetailsProps){
 
     return (
         <>
@@ -45,8 +44,8 @@ export default function DrawDetails({tickets, jackpotValue, dateNextDraw, storeT
                         </div>
 
                         {
-                            tickets.map((ticketatual) => {
-                                return <TicketCard pricing={false} key={ticketatual.ticketNumber} ticketInfo={ticketatual}/>
+                            tickets.map((ticketatual,index) => {
+                                return <TicketCard pricing={false} key={index+1} ticketInfo={ticketatual} ticketNumber={index+1}/>
                             })
                         }
                     </div>

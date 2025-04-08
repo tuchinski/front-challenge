@@ -6,9 +6,10 @@ interface TicketCardProps {
     ticketInfo: TicketInfo;
     pricing: boolean;
     onDelete?: (ticketId: string) => void;
+    ticketNumber: number;
 }
 
-export default function TicketCard({ticketInfo, pricing, onDelete}: TicketCardProps){
+export default function TicketCard({ticketInfo, pricing, onDelete, ticketNumber}: TicketCardProps){
     const styles = {
         commonBallStyle: 'w-8 h-8 rounded-2xl px-3 py-1 text-white flex items-center justify-center',
         ticket: {
@@ -27,7 +28,7 @@ export default function TicketCard({ticketInfo, pricing, onDelete}: TicketCardPr
         <>
             <div id="card" style={styles.ticket} className={`w-min-[260] h-min-[122] rounded-lg px-2 py-3 grid-cols-1 space-y-2 border-1 `} >
                 <div className="flex justify-between text-neutral-600" >
-                    <h1 className="text-sm">{`Ticket #${ticketInfo.ticketNumber}`}</h1>
+                    <h1 className="text-sm">{`Ticket #${ticketNumber}`}</h1>
                     <h2 className="text-xs">{ticketInfo.lotteryName}</h2>
                 </div>
 
